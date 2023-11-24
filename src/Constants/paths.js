@@ -1,6 +1,6 @@
-import MainPage from "../components/pages/mainPage/MainPage";
-import Login from "../components/pages/login/login";
-import Registration from "../components/pages/registration/registration";
+import MainPage from "../UI/Pages/mainPage/MainPage";
+import Login from "../UI/Pages/login/login";
+import Registration from "../UI/Pages/registration/registration";
 
 export const Paths = [
     {

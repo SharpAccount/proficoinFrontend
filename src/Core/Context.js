@@ -6,7 +6,7 @@ export function ContextWrapper({ children }) {
 
     const initUser = {
         login: "",
-        address: "0x0",
+        address: "",
         publicBalance: 0,
         privateBalance: 0,
         seedBalance: 0,
@@ -14,12 +14,16 @@ export function ContextWrapper({ children }) {
         isInWhiteList: false
     }
 
-    const [Sender, setSender] = useState(initUser);
+    const [user, setUser] = useState(initUser);
+
+    const setUserData = (user) => {
+        setUser(user);
+    }
 
 
     const values = {
-        Sender,
-        setSender
+        user,
+        setUserData
     }
 
     return (

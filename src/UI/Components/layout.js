@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from "../HOC/header";
+import Header from "./HOCs/header";
 
 const Layout = ({ children }) => {
     return (
