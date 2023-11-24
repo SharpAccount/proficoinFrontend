@@ -2,7 +2,10 @@ import React, {useContext, useEffect} from 'react';
 import {Accordion, AccordionHeader, Container, Form, ListGroup} from "react-bootstrap";
 import {Context} from "../../../Core/Context";
 import AccordionBody from "react-bootstrap/AccordionBody";
-import {ShowInfoForm} from "../../Components/ShowInfoForm";
+import ShowAllTokens from "../../Components/ShowAllTokens";
+import "./MainPage.css";
+import ShowPrivateTokens from "../../Components/ShowPrivateTokens";
+import ShowPublicTokens from "../../Components/ShowPublicTokens";
 
 const MainPage = () => {
 
@@ -19,10 +22,10 @@ const MainPage = () => {
                         <Container>Время жизни системы:</Container>
                         <Container></Container>
                     </Container>
-                    <Container className="d-flex flex-row w-100 gap-3">
+                    <Container className="mainFuncs d-flex flex-row w-100 gap-3">
 
                         <Container className="bg-light rounded-1 p-2">
-                                <ListGroup>
+                                <ListGroup className="overflow-x-hidden">
                                     <ListGroup.Item>Ваша роль:
                                         {
                                             user.role === "1" ? (
@@ -64,11 +67,11 @@ const MainPage = () => {
                     </Container>
                         {
                             user.role === "1" ? (
-                                <ShowInfoForm />
+                                <ShowPrivateTokens />
                             ) : user.role === "2" ? (
-                                <ShowInfoForm />
+                                <ShowPublicTokens />
                             ) : user.role === "3" ? (
-                                <ShowInfoForm />
+                                <ShowAllTokens />
                             ) : <></>
                         }
             </Container>

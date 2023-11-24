@@ -4,7 +4,7 @@ import ABI from "./ABI.json";
 class Web3Service {
     web3 = new Web3("http://127.0.0.1:8545");
 
-    contract = new this.web3.eth.Contract(ABI, "0x491A73789BCDc959E743C82a8BeC7EC232BefC7E");
+    contract = new this.web3.eth.Contract(ABI, "0xE4c5BA733A304CA572A44Bfe72420882811a6550");
 
     async login(login, password) {
         try {
@@ -27,6 +27,14 @@ class Web3Service {
             return await this.contract.methods.getBalances(address).call();
         } catch (e) {
             console.log(e)
+        }
+    }
+
+    async getUserInfo(address) {
+        try {
+            return await this.contract.methods.getUserInfo(address).call();
+        } catch (e) {
+            console.log(e);
         }
     }
 }

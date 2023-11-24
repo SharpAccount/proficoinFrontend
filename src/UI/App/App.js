@@ -1,4 +1,3 @@
-import './App.css';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {ContextWrapper} from "../../Core/Context";
 import {Paths} from "../../Constants/paths";

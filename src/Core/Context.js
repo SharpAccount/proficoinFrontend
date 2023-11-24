@@ -14,16 +14,41 @@ export function ContextWrapper({ children }) {
         isInWhiteList: false
     }
 
+    const initTokensInfo = {
+        ethBalance: 0,
+        seedBalance: 0,
+        privateBalance: 0,
+        publicBalance: 0,
+    }
+
+    const [tokensInfo, setTokens] = useState(initTokensInfo);
+
+    const setTokenInfo = (tokeninfo) => {
+        setTokens(tokeninfo);
+    }
+
+    const [userToCheck, setUserToCheck] = useState(initUser);
+
+    const setUserToCheckData = (userToCheck) => {
+        setUserToCheck(userToCheck);
+    }
+
     const [user, setUser] = useState(initUser);
 
     const setUserData = (user) => {
         setUser(user);
     }
 
+    const logout = () => {
+        setUser(initUser);
+    }
 
     const values = {
         user,
-        setUserData
+        setUserData,
+        logout,
+        userToCheck,
+        setUserToCheckData
     }
 
     return (
