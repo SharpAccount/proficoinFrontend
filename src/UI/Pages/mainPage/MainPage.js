@@ -1,27 +1,37 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Accordion, AccordionHeader, Container, Form, ListGroup} from "react-bootstrap";
 import {Context} from "../../../Core/Context";
 import AccordionBody from "react-bootstrap/AccordionBody";
-import ShowAllTokens from "../../Components/ShowAllTokens";
+import ShowAllTokens from "../../Components/ShowAllTokens/ShowAllTokens";
 import "./MainPage.css";
-import ShowPrivateTokens from "../../Components/ShowPrivateTokens";
-import ShowPublicTokens from "../../Components/ShowPublicTokens";
+import ShowPrivateTokens from "../../Components/ShowPrivateTokens/ShowPrivateTokens";
+import ShowPublicTokens from "../../Components/ShowPublicTokens/ShowPublicTokens";
+import Timers from "../../Components/Timers/Timers";
+import Web3Service from "../../../Services/Web3Service";
 
 const MainPage = () => {
 
     const { user } = useContext(Context);
 
-    // useEffect(() => {
-    //
-    // }, []);
+    const [userTokens, setUserTokens] = useState({});
+
+    const setUserTokensData = async () => {
+        if (user.address !== ""){
+            const currentUserTokens = await Web3Service.getBalances(user.addr);
+            console.log(user);
+            console.log(currentUserTokens);
+            setUserTokens(currentUserTokens);
+        }
+    }
+
+    useEffect(() => {
+        setUserTokensData();
+    }, []);
 
     return (
         <div>
             <Container className="d-flex flex-column justify-content-center w-100 mt-3 gap-3">
-                    <Container className="w-100 bg-light rounded-1 p-0">
-                        <Container>Время жизни системы:</Container>
-                        <Container></Container>
-                    </Container>
+                <Timers />
                     <Container className="mainFuncs d-flex flex-row w-100 gap-3">
 
                         <Container className="bg-light rounded-1 p-2">
@@ -38,7 +48,7 @@ const MainPage = () => {
                                         }
                                     </ListGroup.Item>
                                     <ListGroup.Item> Ваш адресс: { user.addr } </ListGroup.Item>
-                                    <ListGroup.Item> Ваш баланс в ETH: 0{ /*eth balance*/} </ListGroup.Item>
+                                    <ListGroup.Item> Ваш баланс в ETH: {userTokens[0]} </ListGroup.Item>
                                     <ListGroup.Item> Ваш баланс PROFI подготовительной фазы: { user.seedBalance } </ListGroup.Item>
                                     <ListGroup.Item> Ваш баланс PROFI приватной фазы: { user.privateBalance } </ListGroup.Item>
                                     <ListGroup.Item> Ваш баланс PROFI публичной фазы: { user.publicBalance } </ListGroup.Item>

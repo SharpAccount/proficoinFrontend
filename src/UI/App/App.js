@@ -1,7 +1,7 @@
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {ContextWrapper} from "../../Core/Context";
 import {Paths} from "../../Constants/paths";
-import Layout from "../Components/layout";
+import Layout from "../Components/HOCs/layout";
 
 function App() {
   return (

@@ -22,18 +22,11 @@ export function ContextWrapper({ children }) {
     }
 
     const [tokensInfo, setTokens] = useState(initTokensInfo);
-
-    const setTokenInfo = (tokeninfo) => {
-        setTokens(tokeninfo);
-    }
-
-    const [userToCheck, setUserToCheck] = useState(initUser);
-
-    const setUserToCheckData = (userToCheck) => {
-        setUserToCheck(userToCheck);
-    }
-
     const [user, setUser] = useState(initUser);
+
+    const setTokenInfo = (tokenInfo) => {
+        setTokens(tokenInfo);
+    }
 
     const setUserData = (user) => {
         setUser(user);
@@ -47,8 +40,8 @@ export function ContextWrapper({ children }) {
         user,
         setUserData,
         logout,
-        userToCheck,
-        setUserToCheckData
+        tokensInfo,
+        setTokenInfo
     }
 
     return (

@@ -1,17 +1,20 @@
-import React, {useContext} from 'react';
-import {Context} from "../../Core/Context";
-import Web3Service from "../../Services/Web3Service";
+import React, {useContext, useState} from 'react';
+import Web3Service from "../../../Services/Web3Service";
 import {Container, Form} from "react-bootstrap";
-import {SubmitButton} from "../Kits/submitButton";
+import {SubmitButton} from "../../Kits/submitButton";
 
 const ShowAllTokens = () => {
-    const { userToCheck, setUserToCheckData } = useContext(Context);
+    const [userTokens, setUserTokens] = useState({});
+
+    const setUserTokenData = (userToCheck) => {
+        setUserTokens(userToCheck);
+    }
 
     const showTokens = async (event) => {
         event.preventDefault();
         const { target } = event;
-        const userData = await Web3Service.getUserInfo(target[0].value);
-        setUserToCheckData({...userData});
+        const userData = await Web3Service.getBalances(target[0].value);
+        setUserTokenData({...userData});
     }
 
     return (
@@ -19,9 +22,9 @@ const ShowAllTokens = () => {
             <Form onSubmit={showTokens}>
                 <Form.Label>Введите адрес пользователя, у которого хотите посмотреть токены пользователя </Form.Label>
                 <Form.Control placeholder="адрес пользователя" type="text"></Form.Control>
-                <Container>{userToCheck.publicBalance}</Container>
-                <Container>{userToCheck.privateBalance}</Container>
-                <Container>{userToCheck.seedBalance}</Container>
+                <Container>{userTokens[1]}</Container>
+                <Container>{userTokens[2]}</Container>
+                <Container>{userTokens[3]}</Container>
                 <SubmitButton type="submit"/>
             </Form>
         </Container>
